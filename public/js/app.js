@@ -1,83 +1,30 @@
 "use strict";
 
 class App{
-	constructor(){
+	constructor()
+	{
 		this.dart = [
 			{
 				"id": 1,
 				"name": "SLARIST GRIP-X",
-				"description": "SILVER BRASS",
+				"description": "SILVER BRASS Set Includes: 80% Tungsten Barrels, Colormaster Shafts, Polyester Flights (2 sets), Robson Dart Case",
 				"photo": "img/pin003.png",
-				"Items":[
-					{
-						"packinclude": "80% Tungsten Barrels",
-						"name": "spinach"
-					},
-					{
-						"packinclude": "Aluminum Shafts",
-						"name": "butternut squash"
-					},
-					{
-						"packinclude": "Polyester Flights (2 sets)",
-						"name": "sliced okra"
-					},
-					{
-						"packinclude": "Robson Dart Case",
-						"name": "fatty minced pork"
-					}
-				
-				],
 				"price": "1000",
 				
 			},
 			{
 				"id": 2,
 				"name": "WINDSOR",
-				"description": "SILVER BRASS",
+				"description": "SILVER BRASS Set Includes: 80% Tungsten Barrels, Colormaster Shafts, Polyester Flights (2 sets), Robson Dart Case",
 				"photo": "img/pin9.png",
-				"Items":[
-					{
-						"packinclude": "WINDSOR",
-					
-					},
-					{
-						"packinclude": "Colormaster Shafts",
-						
-					},
-					{
-						"packinclude": "Polyester Flights (2 sets)",
-						
-					},
-					{
-						"packinclude": "Robson Dart Case",
-						
-					}
-				],
 				"price": "1000",
 				
 			},
 			{
 				"id": 3,
 				"name": "Contura",
-				"description": "GOLDEN BRASS",
+				"description": "GOLDEN BRASS Set Includes: 80% Tungsten Barrels, Colormaster Shafts, Polyester Flights (2 sets), Robson Dart Case",
 				"photo": "img/pin005.png",
-				"Items":[
-					{
-						"packinclude": "CONTURA",
-						
-					},
-					{
-						"packinclude": "Colormaster Shafts",
-											},
-					{
-						"packinclude": "Polyester Flights (2 sets)",
-						
-					},
-					{
-						"packinclude": "Robson Dart Case",
-						
-					}
-				],
 				"price": "32",
 				
 			},
@@ -85,39 +32,13 @@ class App{
 			{
 				"id": 4,
 				"name": "ESSEX",
-				"description": "GOLDEN BRASS",
+				"description": "GOLDEN BRASS Set Includes: 80% Tungsten Barrels, Colormaster Shafts, Polyester Flights (2 sets), Robson Dart Case",
 				"photo": "img/pin004.png",
-				"Items":[
-					{
-						"packinclude": "ESSEX",
-						
-					},
-					{
-						"packinclude": "Colormaster Shafts",
-											},
-					{
-						"packinclude": "Polyester Flights (2 sets)",
-						
-					},
-					{
-						"packinclude": "Robson Dart Case",
-						
-					}
-				],
 				"price": "1500",
 				
 			},
 			
 						
-		];
-		this.state = [
-			{
-				"bind": {
-					"procedures":[],
-					"Items_packinclude":[],
-					"Items_name":[]
-				}
-			}
 		];
 	}
 
@@ -134,7 +55,7 @@ class App{
 	createdart(){
 
 
-
+		//---------------- gikuha ang mga then gi store sa variable ang input sa user
 		let id = document.getElementById('dart_id');
 		let name = document.getElementById('dart_name');
 		let description = document.getElementById('dart_description');
@@ -143,45 +64,43 @@ class App{
 		let cookingtime = document.getElementById('dart_cookingtime');
 		let price = document.getElementById('price');
 		
-		let dummyItems = [];
-		for(let i=0;i<this.state[0].bind.Items_packinclude.length;i++){
-			dummyItems.push({
-				"packinclude" : this.state[0].bind.Items_packinclude[i],
-				"name" : this.state[0].bind.Items_name[i]
-			});
-		}
-		let Items = dummyItems;
 
-		let dummyProcedure = [];
-		for(let i=0;i<this.state[0].bind.procedures.length;i++){
-			dummyProcedure.push(this.state[0].bind.procedures[i]);
-		}
-		let procedure = dummyProcedure;
-
+		//---------------- gi set sa ang mga values tanan sa isa ka array
 		let dart = {			
 			"id": id.value,
 			"name": name.value,
 			"description": description.value,
 			"photo": photo.value,
-			"Items":Items,
 			"preparationtime": preparationtime.value,
 			"cookingtime": cookingtime.value,
 			"price": price.value,
-			"procedure": procedure
 		};
 
-
+		//---------------- ang code para ma execute ang insert sa mga value
 		this.dart.push(dart);
 
 		//Clear Fields
-		this.state[0].bind.procedures = this.state[0].bind.Items_packinclude = this.state[0].bind.Items_name = [];
 		id.value = name.value = description.value = photo.value = preparationtime.value = cookingtime.value = price.value = ''; 
+
+		//---------------- ang code para i-load ang home after sa pag insert sa value
+		this.dartLayout();
+
 	}	
+
 
 	deletedart(key){
 		let r = this.dart;
+
+		//---------------- bale gina search niya sa array gamit ang 'id' para makita to item na gusto niya i.delete
 		for(let i=0;i<r.length;i++){
+
+			//---------------- example:
+			//---------------- key = 3
+			//---------------- if(dart.id(1) == 3) NO
+			//---------------- if(dart.id(2) == 3) NO
+			//---------------- if(dart.id(3) == 3) then sulod na siya
 			if(r[i].id == key){
+				//---------------- wala ko kabalo unsa nang splice
 				this.dart.splice(i,1);
 				break;
 			}
@@ -192,6 +111,7 @@ class App{
 
 	dartUpdateNow(id){
 
+		//---------------- gi store sa ang mga bag.ong values na gi input sa user sa isa ka array
 		let dartDummy = {
 			"id" :  id,
 			"name" : $('#dart_updatename').val(),
@@ -200,9 +120,14 @@ class App{
 			"price" : $('#dart_updateprice').val()
 		}
 
+		//---------------- loop code para i search ang 'id' kung unsa to gusto i change na item
 		let m = this.dart;
 		for(let i=0;i<m.length;i++){
+
+			//---------------- if nakita na ang 'id' then musulod na siya
 			if(m[i].id == id){
+
+				//---------------- ang code diri kay i.replace niya tanan ang sulod sa imo gusto ichange
 				m[i] = dartDummy;
 				break;
 			}
@@ -213,7 +138,7 @@ class App{
 	
 
 
-
+	//---------------- search code, same code sa deletedart() kaso i.search lang niya ang item.
 	finddartByID(id){
 		let r = this.dart;
 		for(let i=0;i<r.length;i++){
@@ -223,41 +148,32 @@ class App{
 		}
 	}	
 
+	//---------------- wala ko kabalo unsa ni
 	finddartByName(name){
 		let objects = [];
 		let r = this.dart;
 		for(let i=0;i<r.length;i++){
 			let expr = (r[i].name.toUpperCase().indexOf(name.toUpperCase()) > -1);
-			// console.log(name," vs ",r[i].name," = ",expr);
 			if(expr){
 				objects.push(r[i]);
 			}
 		}
 		return objects;
 	}
-
-	binddartNewProcedures(val,id){
-		let bind = this.state[0].bind.procedures;
-		bind[id] = val;
-		// console.log(bind);
-	}	
-
-	binddartNewItems(val,id,obj){
-		let bind = null;
-		if(obj === "packinclude"){
-			bind = this.state[0].bind.Items_packinclude;
-		}
-		bind[id] = val;
-		// console.log(bind);
-	}	
 }
 
+
+
+
+
+//---------------- 
+//---------------- 	diri kutob ubos kay ang mga code sa actual webpage jud. kung naa kay i.edit sa webpage ex. form, etc. diri lang hilabta			
+//---------------- 
 class Component extends App {
 	constructor(){
 		
 		super();
 	}
-
 	dartLayout(){
 		let html = `
 			
@@ -303,10 +219,6 @@ class Component extends App {
     </section>	
 
 
-
-			
-				
-    			
 				
 
 				<footer class="page-footer">
@@ -419,7 +331,7 @@ dartView(id){
 		      <textarea rows="15"  placeholder="${r.description}" id="dart_updatedescription" class="validate"></textarea>
 		    </div>
 		    <div class="form-group">
-		      <label for="dart_name">Price:</label>
+		      <label for="dart_price">Price:</label>
 		      <input type="number" class="validate" id="dart_updateprice" placeholder="${r.price}">
 		    </div>
 		</div>
@@ -487,26 +399,6 @@ dartView(id){
 
 
 		`;
-
-
-		html += `
-			<div class="row">				
-				<div class="col s6 m6">
-					<h6>PACKAGE INCLUDES</h6>
-					<ul class="collection">
-		`;
-
-		for(let i=0;i<r.Items.length;i++){
-			let ri = r.Items[i];
-			html += `
-						<li class="collection-item avatar">
-							<i class="material-icons check">check</i>
-							<span class="title">${ri.packinclude}</span>
-							
-							
-						</li>
-			`;
-		}
 
 		html += `				
 					</ul>
@@ -647,22 +539,24 @@ dartView(id){
       <textarea rows="15" placeholder="Enter description of the item" id="dart_description" class="validate"></textarea>
     </div>
     <div class="form-group">
-      <label for="dart_name">Price:</label>
+      <label for="dart_price">Price:</label>
       <input type="number" class="validate" id="price" placeholder="₱ ">
     </div>
 </div>
 <div class="col-sm-6">
     <div class="form-group">
-<h6>PACKAGE INCLUDES</h6>
-<button onclick="component.dartNewItems()" class="btn-floating waves-effect waves-light">
-<i class="material-icons">add</i>
-</button>
+
+
+
+
+
+
 <div class="col-md-12" id="dartNewItems"></div>
 
 							</div>
 </div>
 <div class="input-field col s6">
-<div style="display:none;">
+
 							<input disabled value="${this.dart.length+1}" id="dart_id" type="text" class="validate"></div>
 <input id="price" type="hidden" class="validate">
 <input id="dart_cookingtime" type="hidden" class="validate">
@@ -690,65 +584,8 @@ dartView(id){
 		$('#dartCreate').show();
 		$('#dartList').hide();
 		$('#dartView').hide();
-		$('#dartRecent').hide();
-
-		this.state[0].bind.procedures = [];		
-		this.state[0].bind.Items_packinclude = [];		
-		this.state[0].bind.Items_name = [];		
+		$('#dartRecent').hide();	
 	}
-
-
-
-
-
-
-	
-
-
-
-	dartNewProcedures(){
-		let bind = this.state[0].bind.procedures;
-		bind.push("");		
-		
-		let html = ``;
-		for(let i=0;i<bind.length;i++){
-			let decode_bind = `onkeyup="component.binddartNewProcedures(this.value,${i})"`;
-			html += `
-				<div class="row">
-					<div class="input-field col s12">
-						<input ${decode_bind} value="${bind[i]}" type="text" />					
-					</div>
-				</div>		
-			`;
-		}
-
-		this.reRender(`
-			${html}
-			`,document.getElementById("dartNewProcedures"));
-	}
-
-	dartNewItems(obj){
-		let bind_packinclude = this.state[0].bind.Items_packinclude;
-		bind_packinclude.push("");		
-
-		let html = ``;
-		for(let i=0;i<bind_packinclude.length;i++){
-			let decode_bind_packinclude = `onkeyup="component.binddartNewItems(this.value,${i},'packinclude')"`;
-			html += `
-				<div class="row">
-					<div class="input-field col s12">
-						<input ${decode_bind_packinclude} value="${bind_packinclude[i]}" type="text" />					
-					</div>
-				</div>	
-					
-			`;
-		}
-
-		this.reRender(`
-			${html}
-			`,document.getElementById("dartNewItems"));
-	}	
-
 
 }
 
