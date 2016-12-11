@@ -24,7 +24,7 @@ class App{
 				"id": 3,
 				"name": "Contura",
 				"description": "GOLDEN BRASS Set Includes: 80% Tungsten Barrels, Colormaster Shafts, Polyester Flights (2 sets), Robson Dart Case",
-				"photo": "img/pin005.png",
+				"photo": "img/pinse.png",
 				"price": "32",
 				
 			},
@@ -33,7 +33,7 @@ class App{
 				"id": 4,
 				"name": "ESSEX",
 				"description": "GOLDEN BRASS Set Includes: 80% Tungsten Barrels, Colormaster Shafts, Polyester Flights (2 sets), Robson Dart Case",
-				"photo": "img/pin004.png",
+				"photo": "img/pins.png",
 				"price": "1500",
 				
 			},
